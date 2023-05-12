@@ -26,7 +26,7 @@
 
     <h1> Book A call </h1>
     <!-- <form action="main "></form> -->
-    <form onsubmit="main() ">
+    <form onsubmit="main(event) ">
     
 
     <label for ="name"> Name</label>
@@ -56,39 +56,34 @@
 
 
 function main(){
-   var a=document.getElementById("name").value
-   localStorage.setItem("name",a)
+    event.preventDefault()
+   var Name=document.getElementById("name").value
+//    localStorage.setItem("name",Name)
 
-    var ab=document.getElementById("email").value
-   localStorage.setItem("email",ab)
+    var Email=document.getElementById("email").value
+//    localStorage.setItem("email",Email)
 
-   var ac=document.getElementById("number").value
-   localStorage.setItem("number",ac)
+   var Number=document.getElementById("number").value
+//    localStorage.setItem("number",Number)
 
-   var ad=document.getElementById("date").value
-   localStorage.setItem("date",ad)
+   var Date=document.getElementById("date").value
+//    localStorage.setItem("date",Date)
 
-   var ae=document.getElementById("time").value
-   localStorage.setItem("time",ae)
+   var Time=document.getElementById("time").value
+//    localStorage.setItem("time",Time)
    
    var obj={
-    name=a,
-    email=ab,
+    name:Name,
+    email:Email,
+    number:Number,
+    date:Date,
+    time:Time
     
 }
 
 localStorage.setItem(obj.email,JSON.stringify(obj))
-showuserdetails(obj)
+
 }
-
-function showuserdetails(obj){
-     var parentelem=document.getElementById("main")
-     childelem=document.getElement("li")
-     childelem.tectcontent=name->${obj.name},email-${obj.email},phone no->${obj.phone},Date->${obj.Date},Time->${obj.Time}
-     parentelem.appendChild(children)
-}
-
-
-
 </script>
+</body>
 </html>
