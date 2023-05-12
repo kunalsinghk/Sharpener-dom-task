@@ -94,6 +94,8 @@ function showuserdetails(obj){
      var childelem=document.createElement("li")
      childelem.textContent=`name->${obj.name},email-${obj.email},phone no->${obj.number},Date->${obj.date},Time->${obj.time}`
      parentelem.appendChild(childelem)
+
+    //  Delete button
      var deletebutton=document.createElement("input")
      deletebutton.type="button"
      deletebutton.value="Delete"
@@ -102,9 +104,25 @@ function showuserdetails(obj){
         localStorage.removeItem(obj.email)
 
 
+
      }
      childelem.appendChild(deletebutton)
-
+     
+    //  Edit button 
+     var editbutton=document.createElement("input")
+     editbutton.type="button"
+     editbutton.value="edit"
+     editbutton.onclick=() =>{
+        localStorage.removeItem(obj.email)
+        parentelem.removeChild(childelem)
+        document.getElementById("name").value=obj.name
+        document.getElementById("email").value=obj.email
+        document.getElementById("number").value=obj.number
+        document.getElementById("date").value=obj.date
+        document.getElementById("time").value=obj.time
+        
+     }
+   childelem.appendChild(editbutton)
 }
 
 
