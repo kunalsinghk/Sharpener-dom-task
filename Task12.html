@@ -94,6 +94,17 @@ function showuserdetails(obj){
      var childelem=document.createElement("li")
      childelem.textContent=`name->${obj.name},email-${obj.email},phone no->${obj.number},Date->${obj.date},Time->${obj.time}`
      parentelem.appendChild(childelem)
+     var deletebutton=document.createElement("input")
+     deletebutton.type="button"
+     deletebutton.value="Delete"
+     deletebutton.onclick=() => {
+        parentelem.removeChild(childelem)
+        localStorage.removeItem(obj.email)
+
+
+     }
+     childelem.appendChild(deletebutton)
+
 }
 
 
