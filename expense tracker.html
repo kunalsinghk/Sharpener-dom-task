@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    
+</head>
+<body>
+    <div class= "container mt-5" id="main"> 
+        <h1>Expense tracker</h1> 
+ <form onsubmit="onSubmit(event)">
+    <div class="form-group">
+ <label for="name">Name:</label>
+ <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="category">Category:</label>
+            <select class="form-select" id="category" name="category">
+              <option selected>Select a category</option>
+              <option value="EMi">EMi</option>
+              <option value="Personal Expenses">Personal Expenses</option>
+              <option value="Travelling">Travelling</option>
+              <option value="Home rent">Home rent</option>
+
+            </select>
+          </div>
+    <div class="form-group">
+    <label for="Expenses"> Expenses:</label><br>
+   <p> <input type="text" class="form-control" id="amount" name="amount"></p>
+   </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+ </form>
+
+ 
+<ul id="List-item"></ul>
+
+
+
+
+</div>
+<script>
+ function onSubmit(event){
+  event.preventDefault () 
+  
+ var a=event.target
+  const name1=a.name.value
+  const category1=a.category.value 
+  const amount1=a.amount.value
+ obj={
+ name:name1,
+ category:category1,
+ amount:amount1,
+
+}
+  // console.log (name1)
+  // console.log (category1)
+  // console.log (amount1)
+  console.log(obj)
+  localStorage.setItem("Details",JSON.stringify(obj))
+  showdetails()
+ }
+ showdetails()
+
+function showdetails(){
+  var get=JSON.parse(localStorage.getItem("Details"));
+  console.log(get)
+  const parent = document.getElementById("List-item")
+  
+  const li = document.createElement("li")
+  li.textContent=`${obj.name} | ${obj.category} |${obj.amount}`
+  // li.textContent=`$
+  parent.appendChild(li)
+
+
+}
+
+
+
+</script>
+
+</body>
+</html>

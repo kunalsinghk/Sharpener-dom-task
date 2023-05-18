@@ -27,17 +27,17 @@
     <h1> Book A call </h1>
     <!-- <form action="main "></form> -->
     <form onsubmit="main() ">
-    
+
 
     <label for ="name"> Name</label>
     <input type="text" id="name"placeholder="Enter your full name="><br>
-     
+
     <label for ="email"> Email</label>
     <input type="email" id="email" placeholder="Enter your email"><br>
 
     <label for ="number"> Mobile numer</label>
     <input type="number" id="number" placeholder="Enter your mob. no. "><br>
-    
+
     <label for ="date"> Enter the date</label>
     <input type="datetime" id="date"><br>
 
@@ -52,9 +52,6 @@
 </body>
 
 <script>  
-
-
-
 function main(){
    var a=document.getElementById("name").value
    localStorage.setItem("name",a)
@@ -70,25 +67,9 @@ function main(){
 
    var ae=document.getElementById("time").value
    localStorage.setItem("time",ae)
-   
-   var obj={
-    name=a,
-    email=ab,
-    
+
+
 }
-
-localStorage.setItem(obj.email,JSON.stringify(obj))
-showuserdetails(obj)
-}
-
-function showuserdetails(obj){
-     var parentelem=document.getElementById("main")
-     childelem=document.getElement("li")
-     childelem.tectcontent=name->${obj.name},email-${obj.email},phone no->${obj.phone},Date->${obj.Date},Time->${obj.Time}
-     parentelem.appendChild(children)
-}
-
-
 
 </script>
 </html>

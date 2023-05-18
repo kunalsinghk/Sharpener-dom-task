@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="container border border-black">
+        <div class="row my-4 text-center">
+
+            <h1>Expense tracker</h1>
+        </div>
+        <form onsubmit="formSubmit(event)">
+          <div class="row">
+            <div class="col-lg-4 my-4">
+               <label for="amt" class="form-label">Expense amount</label>
+               <input type="text" class="form-control" name=" amount" id="amt" >
+            </div> 
+            <div class="col-lg-4 my-4">
+               <label  for="desc"  class="form-label">Expense Description</label>
+               <input type="text" class="form-control" name="Description" id="desc">
+            </div>
+            <div class="col-lg-4 my-4">
+                <label for="select" class="form-label">Choose Category</label>
+                <select class="form-select" value="select"  name="select" id="select"  aria-label="Default select example">
+                    <option selected>Choose Category</option>
+                    <option value="movie">movie</option>
+                    <option value="grocery">grocery</option> 
+                    <option value="cosmatics">cosmatics</option>
+                </select>
+            </div>
+          </div>
+          <div class="row"> 
+            <div class="col my-4 justify-content-center d-inline-flex">
+               <input type="submit">
+            </div>  
+          </div>
+        </form>
+    </div>
+ </div>
+ <div>
+    <ul id="listOfExpense">
+
+    </ul>
+ </div>
+    <script>
+        function formSubmit(event){
+            event.preventDefault();
+            var amt=document.getElementById("amt").value
+            var desc=document.getElementById("desc").value
+            var Cat=document.getElementById("select").value
+
+            // localStorage.setItem("expense amount",amt)
+            // localStorage.setItem("expense description",desc)
+            // localStorage.setItem("choose category",Cat)
+
+            Obj ={
+                amount:amt,
+                description:desc,
+                category:Cat
+            };
+
+            localStorage.setItem(Obj.description,JSON.stringify(Obj))
+
+            OnScreenUserData(Obj)
+
+        }
+        function OnScreenUserData(Obj){
+            const parentElem = document.getElementById("listOfExpense")
+            const childElem  = document.createElement("li")
+            childElem.textContent =`Expense amount-->${Obj.amount}|| Description-->${Obj.description}||Category-->${Obj.category}`
+            parentElem.appendChild(childElem)
+
+             const deleteButton = document.createElement("input") 
+             deleteButton.type = "button"
+             deleteButton.value ="delete"
+             childElem.appendChild(deleteButton)
+             deleteButton.onclick=()=>{
+                localStorage.removeItem(Obj.description)
+                parentElem.removeChild(childElem)
+             }
+
+             const editButton = document.createElement("input")
+             editButton.type = "button"
+             editButton.value ="edit"
+             childElem.appendChild(editButton)
+             editButton.onclick=()=>{
+                localStorage.removeItem(Obj.description)
+                parentElem.removeChild(childElem)
+                document.getElementById("amt").value = Obj.amount
+                document.getElementById("desc").value = Obj.description
+                document.getElementById("select").value  = Obj.category
+             }
+
+
+
+
+        }
+
+    </script>
+</body>
+</html>
