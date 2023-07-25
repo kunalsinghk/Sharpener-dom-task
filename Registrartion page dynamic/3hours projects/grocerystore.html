@@ -1,0 +1,83 @@
+// Function to perform CRUD operation and update the products list
+async function updateProductList() {
+  try {
+    const response = await axios.get('https://crudcrud.com/api/a43c10ec4226435b86b200a4d34681dd/products');
+    const data = response.data;
+    const productsList = document.getElementById('productsList');
+
+    // Clear the previous list
+    productsList.innerHTML = '';
+
+    // Create a list of products
+    data.forEach(product => {
+      const productDiv = document.createElement('div');
+      productDiv.innerHTML = `
+        <p><strong>Item Name:</strong> ${product.itemName}</p>
+        <p><strong>Description:</strong> ${product.description}</p>
+        <p><strong>Price:</strong> ${product.price}</p>
+        <p><strong>Quantity:</strong> ${product.quantity}</p>
+        <button onclick="buyProduct('${product._id}', 1)">Buy 1</button>
+        <button onclick="buyProduct('${product._id}', 2)">Buy 2</button>
+        <button onclick="buyProduct('${product._id}', 3)">Buy 3</button>
+      `;
+      productsList.appendChild(productDiv);
+    });
+  } catch (error) {
+    console.error('Error fetching products:', error);
+  }
+}
+
+// Function to handle the buy button click
+async function buyProduct(productId, quantityToBuy) {
+  try {
+    const response = await axios.get(`https://crudcrud.com/api/a43c10ec4226435b86b200a4d34681dd/products/${productId}`);
+    const product = response.data;
+
+    // Update the quantity and ensure it doesn't go below 0
+    product.quantity = Math.max(product.quantity - quantityToBuy, 0);
+
+    // Send the updated product back to the server
+    await axios.put(`https://crudcrud.com/api/a43c10ec4226435b86b200a4d34681dd/products/${productId}`, product);
+
+    // Update the products list
+    updateProductList();
+  } catch (error) {
+    console.error('Error updating product:', error);
+  }
+}
+
+// Function to handle form submission
+async function submitForm(event) {
+  event.preventDefault();
+
+  const itemName = document.getElementById('itemName').value;
+  const description = document.getElementById('description').value;
+  const price = document.getElementById('price').value;
+  const quantity = document.getElementById('quantity').value;
+
+  const newProduct = {
+    itemName,
+    description,
+    price,
+    quantity,
+  };
+
+  try {
+    // Send the new product to the server
+    await axios.post('https://crudcrud.com/api/a43c10ec4226435b86b200a4d34681dd/products', newProduct);
+
+    // Clear the form fields after submission
+    document.getElementById('productForm').reset();
+
+    // Update the products list
+    updateProductList();
+  } catch (error) {
+    console.error('Error creating product:', error);
+  }
+}
+
+// Add form submission event listener
+document.getElementById('productForm').addEventListener('submit', submitForm);
+
+// Initial update of the products list
+updateProductList();

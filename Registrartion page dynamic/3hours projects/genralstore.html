@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <title>Grocery seller</title>
+</head>
+<body>
+    <div class="container">
+        <form onsubmit="Singh(event)">
+    
+    <label for="itemname"> Item Name</label> 
+   <input type="text" id="itemname">
+
+   <label for="Desc"> Description</label> 
+   <input type="text" id="Desc">
+
+   <label for="Prc"> Price</label> 
+   <input type="text" id="Prc">
+
+   <label for="quant"> Quantity</label> 
+   <input type="text" id="Quant">
+
+   <button type="submit"> Add Item</button>
+ 
+
+    
+</form>
+</div>
+   <script>
+   
+   function Singh(event) 
+    {
+      event.preventDefault(); 
+      console.log("itemname")
+       var item= document.getElementById ('itemname').value
+       var disc= document.getElementById ('Desc').value
+       var prce=document.getElementById ('Prc').value
+       var quanti=document.getElementById('Quant').value
+       
+      
+    var obj={
+    itemname:item,
+    Desc:disc,
+    prc:prce,
+    Quant:quanti
+}
+console.log(obj)
+localStorage.setItem(obj.disc,JSON.stringify(obj))
+
+}
+</script>
+
+</body>
+</html>
