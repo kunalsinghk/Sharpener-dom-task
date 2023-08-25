@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+</head>
+<body>
+    <div class="container">
+
+  <h1>Registeration form</h1>
+
+  <form onsubmit="sub(event)">
+
+<label for="name">Name</label>
+<input type="text" placeholder="Enter Your name" name="name" id="name"></p>
+
+
+  <label for="email">Email</label>
+  <input type="text" placeholder="Enter Email" name="email" Id="email" required></p>
+
+  <label for="number">Mobile Number</label>
+  <input type="number" placeholder="Enter Mobile number" name="mobile number" Id="mobile" required></p>
+
+  
+  <button type="submit">Submit</button>
+
+  
+
+  
+</div>
+</form>
+
+<script>
+ function sub(event){
+    event.preventDefault()
+    console.log("kunal")
+    var Name=document.getElementById('name').value
+    var Email= document.getElementById('email').value
+    var Mobile= document.getElementById('mobile').value  
+
+    var obj={
+    name:Name,
+    email:Email,
+    mobile:Mobile
+    }
+    console.log(obj)
+
+ }
+  
+
+</script>
+
+</body>
+</html>
